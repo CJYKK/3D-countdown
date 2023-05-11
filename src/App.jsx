@@ -45,28 +45,30 @@ function App() {
    }
 
    useEffect(() => {
-      const startTime = new Date().setHours(new Date().getHours() + 24);
+      const endTime = new Date();
+      endTime.setHours(40, 0, 0, 0); // 设置结束时间为今天下午4点
       const interval = setInterval(() => {
-         const currentTime = new Date().getTime();
-         var totalCountDownTime = Math.ceil((startTime - currentTime) / 1000);
-         if(totalCountDownTime == 0) clearInterval(interval)
-         flipAllCards(totalCountDownTime)
-      }, 250)
-
+        const currentTime = new Date().getTime();
+        const totalCountDownTime = Math.ceil((endTime - currentTime) / 1000);
+        if (totalCountDownTime <= 0) clearInterval(interval);
+        flipAllCards(totalCountDownTime);
+      }, 250);
+    
       // * Cleanup function
       return () => {
-         clearInterval(interval)
-      }
-   }, []);
+        clearInterval(interval);
+      };
+    }, []);
+    
 
    return (
       <div>
          <div>
-            <h1 className='main-heading'>COUNTDOWN</h1>
+            <h1 className='main-heading'>家长会什么时候来啊</h1>
          </div>
          <div className="countdown-container">
             <div className="countdown-cards">
-               <div className='card-title'>Hours</div>
+               <div className='card-title'>时</div>
                <div className='card-container' >
                   <div className="flip-card" data-hours-tens>
                      <div className="top">2</div>
@@ -79,7 +81,7 @@ function App() {
                </div>
             </div>
             <div className="countdown-cards">
-               <div className='card-title'>Minutes</div>
+               <div className='card-title'>分</div>
                <div className='card-container'>
                   <div className="flip-card" data-minutes-tens>
                      <div className="top">0</div>
@@ -92,7 +94,7 @@ function App() {
                </div>
             </div>
             <div className="countdown-cards">
-               <div className='card-title'>Seconds</div>
+               <div className='card-title'>秒</div>
                <div className='card-container'>
                   <div className="flip-card" data-seconds-tens>
                      <div className="top">0</div>
