@@ -46,7 +46,7 @@ function App() {
 
    useEffect(() => {
       const endTime = new Date();
-      endTime.setHours(40, 0, 0, 0); // 设置结束时间为今天下午4点
+      endTime.setHours(16, 0, 0, 0); // 设置结束时间为今天下午4点
       const interval = setInterval(() => {
         const currentTime = new Date().getTime();
         const totalCountDownTime = Math.ceil((endTime - currentTime) / 1000);
